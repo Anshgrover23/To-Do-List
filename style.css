@@ -9,13 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: rgb(136, 0, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(136, 0, 255, 1) 24%,
-    rgba(65, 45, 253, 1) 48%,
-    rgba(29, 29, 29, 1) 100%
-  );
+  background-color: #ffe6cc; /* Updated background color */
 }
 
 .container {
@@ -47,8 +41,7 @@ h1 {
 .js-time-input,
 .js-category-input,
 .js-priority-input,
-.js-add-button,
-.js-cancel-button {
+.js-add-button {
   font-size: 15px;
   padding: 10px 15px;
   border: 1px solid #ccc;
@@ -57,37 +50,20 @@ h1 {
   color: #333;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-.js-date-input:hover,
-.js-time-input:hover {
-  cursor: pointer;
-  font-weight: bold;
 }
 
 .js-add-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
-  row-gap: 1rem;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-.js-actions-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  grid-row: auto;
-  grid-column: auto;
-}
-
-.js-add-button,
-.js-cancel-button {
+.js-add-button {
   background-color: green;
   color: white;
   border: none;
@@ -103,19 +79,12 @@ h1 {
   background-color: darkgreen;
 }
 
-.js-cancel-button {
-  background-color: #ff0000;
-}
-
-.js-cancel-button:hover {
-  background-color: #8b0000;
-}
-
 .js-add-html {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
   gap: 10px;
   height: 25px;
+  background-color: #ffffff;
 }
 
 .small-container {
@@ -125,7 +94,7 @@ h1 {
   border: 1px solid #ccc;
   padding: 10px 15px;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   min-height: 3px;
   text-align: left;
@@ -154,22 +123,22 @@ h1 {
 }
 
 .category-tag {
-  background-color: #e0e0e0;
+  background-color: #ffe4b5;
   color: #333;
 }
 
 .priority-high {
-  background-color: #ffcccb;
+  background-color: #ff9999;
   color: #d8000c;
 }
 
 .priority-medium {
-  background-color: #feefb3;
+  background-color: #ffeb99;
   color: #9f6000;
 }
 
 .priority-low {
-  background-color: #d4edda;
+  background-color: #ccffcc;
   color: #155724;
 }
 
@@ -214,10 +183,9 @@ h1 {
   margin-right: 5px;
 }
 
-/* Footer Styling */
 footer {
-  background-color: transparent;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.8); /* Lighter background color */
+  color: black; /* Changed text color to black for contrast */
   text-align: center;
   padding: 20px 0;
   position: fixed;
@@ -252,20 +220,6 @@ footer p {
 .social-media a:hover {
   transform: scale(1.05);
   transition: all 0.25s ease-out;
-}
-
-/*
-Animating title
-*/
-
-.subtitle {
-  text-align: center;
-  color: #f6ac62;
-  font-family: 'Open sans', sans-serif;
-  font-family: cursive;
-  font-size: 5rem;
-  padding: 8px 16px;
-  text-shadow: #000000 3px 4px 10px;
 }
 
 .sort-buttons {
@@ -331,22 +285,4 @@ Animating title
 .js-add-html::-webkit-scrollbar-track {
   background-color: black;
   border-radius: 5px;
-}
-#js-success-notification {
-  position: absolute;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: center;
-  background-color: #46a34a;
-  width: 15%;
-  min-width: 200px;
-  height: 7%;
-  left: 2%;
-  bottom: 10%;
-  color: #d4edda;
-}
-.js-add-html-tasks {
-  border: 1px black solid;
-  height: fit-content;
-  max-height: 35vh;
 }
