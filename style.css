@@ -220,6 +220,43 @@ footer p {
 .social-media a:hover {
   transform: scale(1.05);
   transition: all 0.25s ease-out;
+  border: none;
+}
+
+.social-media .insta:hover {
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  color: white;
+}
+
+.social-media .facebook:hover {
+  background-color: #1877f2;
+  color: white;
+}
+
+.social-media .x:hover {
+  background-color: #000000;
+  color: white;
+}
+
+.social-media .linkedin:hover {
+  background-color: #0a66c2;
+  color: white;
+}
+
+.social-media .github:hover {
+  background-color: white;
+}
+
+.social-media .youtube:hover {
+  background-color: white;
+  color: #ff0000;
 }
 
 .sort-buttons {
