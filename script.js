@@ -21,8 +21,9 @@ checkIcon.classList.add('fa-solid', 'fa-check');
 // Display the remaining characters count out of 120
 document.querySelector('.js-name-input').addEventListener('input', (e) => {
   let input = e.target.value;
-  if (input.length === 120) {
-    alert('max character limits exceeded');
+  if (input.length > 120) {
+    showToast('max character limits reached', 'Danger');
+    e.target.value = input.slice(0, 120);
   }
 });
 
@@ -73,6 +74,34 @@ function clearInputs() {
   setDefaultDateTime();
 }
 
+function validInfo(name, date, time, category, priority) {
+  const specifyMessage = [];
+  if (!name) {
+    specifyMessage.push('task');
+  }
+  if (!date) {
+    specifyMessage.push('date');
+  }
+  if (!time) {
+    specifyMessage.push('time');
+  }
+  if (!category) {
+    specifyMessage.push('category');
+  }
+  if (!priority) {
+    specifyMessage.push('priority');
+  }
+
+  if (!name || !date || !time || !category || !priority) {
+    showToast(
+      `Please fill this fields: ${specifyMessage.join(', ')}.`,
+      'Danger'
+    );
+    return false;
+  }
+  return true;
+}
+
 function addTodo() {
   const inputNameElement = document.querySelector('.js-name-input');
   const inputDateElement = document.querySelector('.js-date-input');
@@ -87,22 +116,17 @@ function addTodo() {
   let priority = inputPriorityElement.value;
 
   // Validation checks
-  if (!name || !date || !time || !category || !priority) {
-    alert(
-      'Please fill in all fields: task, date, time, category, and priority.'
-    );
-    return;
-  }
+  if (!validInfo(name, date, time, category, priority)) return;
 
   // Check that date is not in past
   if (date < inputDateElement.min) {
-    alert('Please select the current date or a future date.');
+    showToast('Please select the current date or a future date.', 'Danger');
     return;
   }
 
   // Check that time is not in past
   if (time < inputTimeElement.min && date === inputDateElement.min) {
-    alert('Please select a future time.');
+    showToast('Please select the current time or a future time.', 'Danger');
     return;
   }
 
@@ -355,3 +379,58 @@ document.addEventListener('DOMContentLoaded', () => {
     .querySelector('.js-filter-input')
     .addEventListener('change', filterTodos);
 });
+
+/** New toast Info */
+class Toast {
+  constructor(message, color, time) {
+    this.message = message;
+    this.color = color;
+    this.time = time;
+    this.element = null;
+    var element = document.createElement('div');
+    element.className = 'toast-notification hide';
+    this.element = element;
+    var countElements = document.getElementsByClassName('toast-notification');
+    element.style.opacity = 0.9;
+
+    element.style.marginBottom = countElements.length * 55 + 'px';
+
+    element.style.backgroundColor = this.color;
+
+    element.textContent = this.message;
+
+    var close = document.createElement('div');
+    close.className = 'close-notification';
+
+    var icon = document.createElement('i');
+    icon.className = 'fa fa-times';
+
+    close.appendChild(icon);
+    element.appendChild(close);
+
+    document.body.appendChild(element);
+
+    setTimeout(() => {
+      element.classList.replace('hide', 'show');
+    }, 100);
+
+    setTimeout(() => {
+      element.classList.replace('show', 'hide');
+      setTimeout(() => element.remove(), 300);
+    }, this.time);
+
+    close.addEventListener('click', () => {
+      element.classList.replace('show', 'hide');
+      setTimeout(() => element.remove(), 300);
+    });
+  }
+}
+
+const ToastType = {
+  Danger: '#eb3b5a',
+  Warning: '#f6b93b',
+  Succes: '#00b894',
+};
+function showToast(message, type) {
+  new Toast(message, ToastType[type], 3000);
+}
