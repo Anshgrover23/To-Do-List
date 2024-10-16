@@ -9,6 +9,7 @@ let isEditing = false;
 let editIndex = null;
 
 let filterMethod = 'all';
+let currentCategory = 'today'; //Default category
 
 // Add icon - for add action
 const addIcon = document.createElement('i');
@@ -198,32 +199,48 @@ function cancelEditTodo() {
 }
 
 function updateTodoList() {
-  // Sort todoList based on the current sort method
-  let filteredTodos = todoList;
+  //clone array list from todoList to todos
+  let todos = [...todoList];
 
   // Apply filtering based on the selected filter method
-  if (filterMethod === 'pending') {
-    filteredTodos = todoList.filter((todo) => !todo.completed);
-  } else if (filterMethod === 'completed') {
-    filteredTodos = todoList.filter((todo) => todo.completed);
-  }
+  // if (filterMethod === 'pending') {
+  //   filteredTodos = todoList.filter((todo) => !todo.completed);
+  // } else if (filterMethod === 'completed') {
+  //   filteredTodos = todoList.filter((todo) => todo.completed);
+  // }
 
-  filteredTodos.sort((a, b) => {
-    if (currentSortMethod === 'date') {
-      const dateA = new Date(a.date + ' ' + a.time);
-      const dateB = new Date(b.date + ' ' + b.time);
-      return dateA - dateB;
-    } else if (currentSortMethod === 'category') {
-      return currentCategorySortOrder === 'asc'
-        ? a.category.localeCompare(b.category)
-        : b.category.localeCompare(a.category);
-    } else if (currentSortMethod === 'priority') {
-      const priorityOrder = { high: 0, medium: 1, low: 2 };
-      return currentSortOrder === 'asc'
-        ? priorityOrder[a.priority] - priorityOrder[b.priority]
-        : priorityOrder[b.priority] - priorityOrder[a.priority];
-    }
-  });
+  const filteredTodos = todos
+    // Apply filtering based on selected category (today/work/personal/shopping/other)
+    .filter((todo) =>
+      currentCategory === 'today' ? true : currentCategory === todo.category
+    )
+    // Apply filtering based on selected status (pending/completed)
+    .filter((todo) => {
+      if (filterMethod === 'pending') {
+        return !todo.completed;
+      }
+      if (filterMethod === 'completed') {
+        return todo.completed;
+      }
+      return todo;
+    })
+    // Sort todoList based on the current sort method
+    .sort((a, b) => {
+      if (currentSortMethod === 'date') {
+        const dateA = new Date(a.date + ' ' + a.time);
+        const dateB = new Date(b.date + ' ' + b.time);
+        return dateA - dateB;
+      } else if (currentSortMethod === 'category') {
+        return currentCategorySortOrder === 'asc'
+          ? a.category.localeCompare(b.category)
+          : b.category.localeCompare(a.category);
+      } else if (currentSortMethod === 'priority') {
+        const priorityOrder = { high: 0, medium: 1, low: 2 };
+        return currentSortOrder === 'asc'
+          ? priorityOrder[a.priority] - priorityOrder[b.priority]
+          : priorityOrder[b.priority] - priorityOrder[a.priority];
+      }
+    });
 
   const addElement = document.querySelector('.js-add-html');
   todoListhtml = '';
@@ -231,8 +248,8 @@ function updateTodoList() {
   for (let i = 0; i < filteredTodos.length; i++) {
     const todo = filteredTodos[i];
     todoListhtml += `
-      <div class="small-container ${todo.completed ? 'completed' : ''}">
-        <input type="checkbox" class="js-complete-checkbox" data-index="${i}" ${todo.completed ? 'checked' : ''} onchange="toggleComplete(${todoList.indexOf(todo)})">
+      <div class="small-container ${todo.completed ? 'completed' : ''}" onclick="toggleComplete(${todoList.indexOf(todo)})">
+        <input type="checkbox" class="js-complete-checkbox" data-index="${i}" ${todo.completed ? 'checked' : ''} >
         <div class="task-info">
           <span class="task-name">${todo.name}</span>
           <span class="category-tag">${todo.category}</span>
@@ -287,6 +304,12 @@ function setDefaultDateTime() {
   inputTimeElement.min = time; // Set the min attribute to current time
 }
 
+function filterCategory() {
+  const filterElement = document.querySelector('.filter-category');
+  currentCategory = filterElement.value.toLowerCase(); //lowercase to match the value of category in the list
+  updateTodoList();
+}
+
 function sortTodos(sortBy) {
   if (sortBy === 'priority') {
     currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
@@ -299,7 +322,7 @@ function sortTodos(sortBy) {
 }
 
 function filterTodos() {
-  const filterElement = document.querySelector('.js-filter-input');
+  const filterElement = document.querySelector('.filter-status');
   filterMethod = filterElement.value;
   updateTodoList();
 }
@@ -352,6 +375,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add event listener for filter button
   document
-    .querySelector('.js-filter-input')
+    .querySelector('.filter-status')
     .addEventListener('change', filterTodos);
+
+  document
+    .querySelector('.filter-category')
+    .addEventListener('change', filterCategory);
 });

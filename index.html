@@ -24,7 +24,71 @@
         </ul>
       </div>
     </nav>
+    <div class="container">
+      <h1 class="subtitle">Todo-List</h1>
 
+      <div class="js-add-grid" id="add-todo">
+        <input
+          type="text"
+          placeholder="Share Your Thoughts"
+          class="js-name-input"
+        />
+
+        <input type="date" class="js-date-input" min="" />
+        <input type="time" class="js-time-input" />
+        <select class="js-category-input">
+          <option value="">Select Category</option>
+          <option value="work">👜 Work</option>
+          <option value="personal">📅 Personal</option>
+          <option value="shopping">🛍️ Shopping</option>
+          <option value="other">☁️ Other</option>
+        </select>
+        <select class="js-priority-input">
+          <option value="">Select Priority</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="js-actions-wrapper">
+          <button class="js-add-button">
+            <i class="fa-solid fa-add"></i>
+          </button>
+          <button class="js-cancel-button" title="Cancel">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <div id="js-success-notification" style="display: none">
+          <p>Task completed 🎉</p>
+        </div>
+
+      <!-- Add this new div for sorting buttons -->
+      <div class="sort-buttons">
+        <div class="sort-filter-container">
+          <select
+            class="js-filter-input filter-category"
+            onchange="filterCategory()"
+          >
+            <option value="today">☀️ Today</option>
+            <option value="work">👜 Work</option>
+            <option value="personal">📅 Personal</option>
+            <option value="shopping">🛍️ Shopping</option>
+            <option value="other">☁️ Other</option>
+          </select>
+          <select
+            class="js-filter-input filter-status"
+            onchange="filterTodos()"
+          >
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+          <button class="sort-button" onclick="sortTodos('category')">
+            Sort by Category
+          </button>
+          <button class="sort-button" onclick="sortTodos('priority')">
+            Sort by Priority
+          </button>
+        </div>
     <!-- Main Block -->
     <section
       class="flex justify-center items-center h-screen bg-gradient-to-b from-purple-600 via-indigo-600 to-gray-900"
