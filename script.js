@@ -27,6 +27,37 @@ document.querySelector('.js-name-input').addEventListener('input', (e) => {
   }
 });
 
+let dateCheck = false;
+let timeCheck = false;
+
+document.querySelector('.js-date-input').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (!dateCheck) {
+    e.target.showPicker();
+    dateCheck = true;
+  } else {
+    dateCheck = false;
+  }
+});
+
+document.querySelector('.js-date-input').addEventListener('blur', () => {
+  dateCheck = false;
+});
+
+document.querySelector('.js-time-input').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (!timeCheck) {
+    e.target.showPicker();
+    timeCheck = true;
+  } else {
+    timeCheck = false;
+  }
+});
+
+document.querySelector('.js-time-input').addEventListener('blur', () => {
+  timeCheck = false;
+});
+
 function clearInputs() {
   const inputNameElement = document.querySelector('.js-name-input');
   const inputDateElement = document.querySelector('.js-date-input');
@@ -61,6 +92,18 @@ function addTodo() {
     alert(
       'Please fill in all fields: task, date, time, category, and priority.'
     );
+    return;
+  }
+
+  // Check that date is not in past
+  if (date < inputDateElement.min) {
+    alert('Please select the current date or a future date.');
+    return;
+  }
+
+  // Check that time is not in past
+  if (time < inputTimeElement.min && date === inputDateElement.min) {
+    alert('Please select a future time.');
     return;
   }
 
@@ -258,6 +301,7 @@ function setDefaultDateTime() {
   inputDateElement.value = date;
   inputDateElement.min = date; // Set the min attribute to today's date
   inputTimeElement.value = time;
+  inputTimeElement.min = time; // Set the min attribute to current time
 }
 
 function filterCategory() {

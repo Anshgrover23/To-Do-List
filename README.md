@@ -11,6 +11,7 @@ A simple and interactive To-Do List application built with HTML, CSS, and JavaSc
 - Delete tasks
 - Set a date for each task
 - Responsive design
+- Time feature
 
 ## Installation
 
@@ -25,6 +26,7 @@ Open `index.html` in your browser to use the application.
 ## Usage
 
 - **Add a Task:** Enter a task in the input field and click the "Add" button.
+- **Task Adding Limitation:** User can not add todo without given full details
 - **Edit a Task:** Click the edit icon next to the task, make your changes, and save.
 - **Delete a Task:** Click the delete icon next to the task.
 

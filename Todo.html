@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="subtitle">Todo-List</h1>
+
+      <div class="js-add-grid" id="add-todo">
+        <input
+          type="text"
+          placeholder="Share Your Thoughts"
+          class="js-name-input"
+        />
+
+        <input type="date" class="js-date-input" min="" />
+        <input type="time" class="js-time-input" />
+        <select class="js-category-input">
+          <option value="">Select Category</option>
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="shopping">Shopping</option>
+          <option value="other">Other</option>
+        </select>
+        <select class="js-priority-input">
+          <option value="">Select Priority</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="js-actions-wrapper">
+          <button class="js-add-button">
+            <i class="fa-solid fa-add"></i>
+          </button>
+          <button class="js-cancel-button" title="Cancel">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <div id="js-success-notification" style="display: none">
+          <p>Task completed 🎉</p>
+        </div>
+      </div>
+
+      <!-- Add this new div for sorting buttons -->
+      <div class="sort-buttons">
+        <div class="sort-filter-container">
+          <button class="sort-button" onclick="sortTodos('category')">
+            Sort by Category
+          </button>
+          <button class="sort-button" onclick="sortTodos('priority')">
+            Sort by Priority
+          </button>
+          <select class="js-filter-input" onchange="filterTodos()">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+      <div class="test">
+        <div class="js-add-html js-add-grid js-add-html-tasks"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2024 Made with &#10084; by Ansh Grover. All rights reserved.</p>
+      <div class="social-media">
+        <a class="insta" href="https://www.instagram.com/" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a class="facebook" href="https://www.facebook.com/" target="_blank"
+          ><i class="fa-brands fa-facebook"></i
+        ></a>
+        <a class="x" href="https://x.com/i/flow/login" target="_blank"
+          ><i class="fa-brands fa-x-twitter"></i
+        ></a>
+        <a class="linkedin" href="https://www.linkedin.com/" target="_blank"
+          ><i class="fa-brands fa-linkedin-in"></i
+        ></a>
+        <a class="github" href="https://github.com/Groverio" target="_blank"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+        <a class="youtube" href="https://www.youtube.com/" target="_blank"
+          ><i class="fa-brands fa-youtube"></i
+        ></a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
