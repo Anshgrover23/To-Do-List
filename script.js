@@ -141,6 +141,7 @@ function addTodo() {
 
   // Update the displayed list
   updateTodoList();
+  updateStats();
 }
 
 function deleteTodo(index) {
@@ -148,6 +149,7 @@ function deleteTodo(index) {
   todoList.splice(index, 1);
   localStorage.setItem('todoList', JSON.stringify(todoList));
   updateTodoList();
+  updateStats();
 }
 
 function editTodo(index) {
@@ -296,12 +298,14 @@ function sortTodos(sortBy) {
   }
   currentSortMethod = sortBy;
   updateTodoList();
+  updateStats();
 }
 
 function filterTodos() {
   const filterElement = document.querySelector('.js-filter-input');
   filterMethod = filterElement.value;
   updateTodoList();
+  updateStats();
 }
 
 // this shows the sucessNotification for 4000ms
@@ -321,11 +325,13 @@ function toggleComplete(index) {
   }
   localStorage.setItem('todoList', JSON.stringify(todoList));
   updateTodoList();
+  updateStats();
 }
 
 // Initialize the todo list and set default date and time on page load
 document.addEventListener('DOMContentLoaded', () => {
   updateTodoList();
+  updateStats();
   setDefaultDateTime();
 
   // Set focus on the name input field
@@ -355,3 +361,18 @@ document.addEventListener('DOMContentLoaded', () => {
     .querySelector('.js-filter-input')
     .addEventListener('change', filterTodos);
 });
+
+
+// adding progress bar
+
+const progress = document.getElementById('progress');
+const progresstext = document.getElementById('progressText');
+const updateStats = () => {
+  const completeTasks = todoList.filter((task) => task.completed).length;
+  const totalTasks = todoList.length;
+  const currprogress = (completeTasks / totalTasks) * 100;
+  progress.style.width = `${currprogress}%`;
+  const progressnumber = currprogress.toFixed(0);
+  progresstext.innerText = progressnumber + '%';
+};
+

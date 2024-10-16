@@ -467,3 +467,50 @@ Animating title
     font-size: 10px;
   }
 }
+
+
+/* progress bar css below */
+.progressContainer {
+  min-width: 18vw;
+  height: 5vh;
+  display: flex;
+  gap: 1vw;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:5vh;
+  left:2vw;
+  box-shadow:
+    6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px darkblue;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: white;
+  font-family: Poppins;
+}
+
+#progressBar {
+  width: 100%;
+  height: 10px;
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow:
+    6px 6px 10px -1px rgba(0, 0, 0, 0.5),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.9);
+}
+#progress {
+  width: 0%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: greenyellow;
+  transition: all 0.3s ease;
+}
+
+.progressText {
+  font-size: 1rem;
+  color: black;
+  width: 20px;
+}
+
+
