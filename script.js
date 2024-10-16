@@ -362,7 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('change', filterTodos);
 });
 
-
 // adding progress bar
 
 const progress = document.getElementById('progress');
@@ -375,4 +374,3 @@ const updateStats = () => {
   const progressnumber = currprogress.toFixed(0);
   progresstext.innerText = progressnumber + '%';
 };
-

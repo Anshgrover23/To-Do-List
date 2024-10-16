@@ -468,7 +468,6 @@ Animating title
   }
 }
 
-
 /* progress bar css below */
 .progressContainer {
   min-width: 18vw;
@@ -478,8 +477,8 @@ Animating title
   justify-content: center;
   align-items: center;
   position: absolute;
-  top:5vh;
-  left:2vw;
+  top: 5vh;
+  left: 2vw;
   box-shadow:
     6px 6px 10px -1px rgba(0, 0, 0, 0.15),
     -6px -6px 10px -1px darkblue;
@@ -512,5 +511,3 @@ Animating title
   color: black;
   width: 20px;
 }
-
-
