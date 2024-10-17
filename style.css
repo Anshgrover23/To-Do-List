@@ -17,6 +17,19 @@ body {
     rgba(29, 29, 29, 1) 100%
   );
 }
+.why-need-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #f6ac62;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
 
 .container {
   width: 100%;
