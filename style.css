@@ -8,7 +8,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
+
   background: rgb(136, 0, 255);
   background: linear-gradient(
     0deg,
@@ -226,9 +227,8 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 0;
-  position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: 30px;
   font-size: 1rem;
   display: flex;
   justify-content: space-around;
@@ -246,7 +246,7 @@ footer p {
 }
 
 .social-media a {
-  margin: 1px 11px;
+  margin: 10px 11px;
   color: black;
   font-size: 15px;
   padding: 8px;
