@@ -141,6 +141,7 @@ function addTodo() {
 
   // Update the displayed list
   updateTodoList();
+  updateTaskCounter();
 }
 
 function deleteTodo(index) {
@@ -148,6 +149,7 @@ function deleteTodo(index) {
   todoList.splice(index, 1);
   localStorage.setItem('todoList', JSON.stringify(todoList));
   updateTodoList();
+  updateTaskCounter();
 }
 
 function editTodo(index) {
@@ -177,6 +179,7 @@ function editTodo(index) {
   addButton.innerHTML = '';
   addButton.title = 'Update';
   addButton.appendChild(checkIcon);
+  updateTaskCounter();
 }
 
 function cancelEditTodo() {
@@ -195,6 +198,7 @@ function cancelEditTodo() {
   addButton.innerHTML = '';
   addButton.title = 'Add';
   addButton.appendChild(addIcon);
+  updateTaskCounter();
 }
 
 function updateTodoList() {
@@ -223,6 +227,7 @@ function updateTodoList() {
         ? priorityOrder[a.priority] - priorityOrder[b.priority]
         : priorityOrder[b.priority] - priorityOrder[a.priority];
     }
+    updateTaskCounter();
   });
 
   const addElement = document.querySelector('.js-add-html');
@@ -271,6 +276,9 @@ function updateTodoList() {
       editTodo(index);
     });
   });
+
+  // Call the task counter update function
+  updateTaskCounter();
 }
 
 function setDefaultDateTime() {
@@ -321,6 +329,19 @@ function toggleComplete(index) {
   }
   localStorage.setItem('todoList', JSON.stringify(todoList));
   updateTodoList();
+  updateTaskCounter();
+}
+
+function updateTaskCounter() {
+  const totalTasks = todoList.length;
+
+  // Select the element where the task counter is displayed
+  const taskCounterButton = document.querySelector('.task-counter-button');
+
+  // Update the text of the task counter button
+  if (taskCounterButton) {
+    taskCounterButton.innerText = `Tasks: ${totalTasks}`;
+  }
 }
 
 // Initialize the todo list and set default date and time on page load
