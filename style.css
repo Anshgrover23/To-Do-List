@@ -119,23 +119,22 @@ h1 {
   gap: 10px;
   height: 25px;
 }
-
 .small-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #ccc;
   padding: 10px 15px;
   border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: white;
   min-height: 45px;
   max-height: 90px;
   height: auto;
   box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 10px;
 }
-
 .task-info {
   display: flex;
   align-items: center;
@@ -146,8 +145,10 @@ h1 {
 
 .task-name {
   font-weight: bold;
+  color: white;
   overflow: auto;
   max-height: 40px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .category-tag,
@@ -157,26 +158,23 @@ h1 {
   border-radius: 3px;
   font-size: 12px;
   font-weight: bold;
+  color: white;
 }
 
 .category-tag {
   background-color: #e0e0e0;
-  color: #333;
 }
 
 .priority-high {
   background-color: #ffcccb;
-  color: #d8000c;
 }
 
 .priority-medium {
   background-color: #feefb3;
-  color: #9f6000;
 }
 
 .priority-low {
   background-color: #d4edda;
-  color: #155724;
 }
 
 .js-delete-button,
