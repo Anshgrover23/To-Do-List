@@ -33,7 +33,7 @@ body {
   font-size: 5rem;
   padding: 8px 16px;
   text-shadow: 0 3px 10px rgba(10, 10, 10, 40);
-  animation: bounce 1s infinite;
+  animation: bounce 3s infinite; /* Slower and more subtle animation */
 }
 
 h1 {
@@ -297,18 +297,20 @@ footer p {
   color: #ff0000;
 }
 
-/*
-Animating title
-*/
-
-.subtitle {
-  text-align: center;
-  color: #f6ac62;
-  font-family: 'Open sans', sans-serif;
-  font-family: cursive;
-  font-size: 5rem;
-  padding: 8px 16px;
-  text-shadow: #000000 3px 4px 10px;
+/* Subtle bounce animation */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px); /* Subtle bounce */
+  }
+  60% {
+    transform: translateY(-2px); /* Subtle bounce */
 }
 
 .sort-buttons {
@@ -358,112 +360,4 @@ Animating title
 
 .js-add-html {
   overflow-y: scroll;
-  scroll-behavior: smooth;
-  height: 30vh;
-}
-
-.js-add-html::-webkit-scrollbar {
-  width: 10px; /* Width of the scrollbar */
-}
-
-.js-add-html::-webkit-scrollbar-thumb {
-  background-color: rgb(136, 132, 132);
-  border-radius: 7px;
-}
-
-.js-add-html::-webkit-scrollbar-track {
-  background-color: black;
-  border-radius: 5px;
-}
-#js-success-notification {
-  position: absolute;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: center;
-  background-color: #46a34a;
-  width: 15%;
-  min-width: 200px;
-  height: 7%;
-  left: 2%;
-  bottom: 10%;
-  color: #d4edda;
-}
-.js-add-html-tasks {
-  border: 1px black solid;
-  height: fit-content;
-  max-height: 35vh;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Londrina+Outline&display=swap');
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-10px);
-  }
-
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-@media (max-width: 947px) {
-  .container {
-    max-width: 100%;
-    padding: 10px;
-  }
-
-  .subtitle {
-    font-size: 3rem;
-  }
-
-  .js-add-grid,
-  .js-add-html {
-    grid-template-columns: 1fr;
-  }
-
-  .js-add-button {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .task-info {
-    flex-direction: column;
-  }
-
-  .footer {
-    font-size: 0.8rem;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .subtitle {
-    font-size: 2rem;
-  }
-
-  .js-add-grid,
-  .js-add-html {
-    grid-template-columns: 1fr;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .task-info {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .footer p {
-    font-size: 10px;
-  }
-}
+ 
