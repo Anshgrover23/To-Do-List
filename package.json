@@ -19,6 +19,7 @@
     "prettier": "^3.3.3"
   },
   "dependencies": {
-    "framer-motion": "^11.11.8"
+    "framer-motion": "^11.11.8",
+    "lint": "^0.8.19"
   }
 }
