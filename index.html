@@ -1,58 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>To-Do List App</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" /> <!-- Add your favicon here -->
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
     <!-- Navbar -->
     <nav class="bg-white shadow-lg">
-      <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-2xl font-bold text-purple-600">To-Do List</a>
-        <ul class="flex space-x-4">
-          <!-- All of these buttons currently lead to error pages as their functionality will be added in the future
-         after login and authentication has been implemented.-->
-          <li>
-            <a href="error.html" class="hover:text-blue-600">Upcoming Tasks</a>
-          </li>
-          <li><a href="error.html" class="hover:text-blue-600">Friends</a></li>
-        </ul>
-      </div>
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-purple-600">To-Do List</a>
+            <ul class="flex space-x-4">
+                <li><a href="error.html" class="hover:text-blue-600">Upcoming Tasks</a></li>
+                <li><a href="error.html" class="hover:text-blue-600">Friends</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Main Block -->
-    <section
-      class="flex justify-center items-center h-screen bg-gradient-to-b from-purple-600 via-indigo-600 to-gray-900"
-    >
-      <div class="container mx-auto px-4 text-center text-white">
-        <h1 class="text-4xl md:text-6xl font-bold">
-          Organize Your Life with this easy-to-use app
-        </h1>
-        <p class="mt-4 text-lg md:text-2xl">
-          Manage tasks effortlessly and boost your productivity. Stay on top of
-          everything with our intuitive To-Do List.
-        </p>
-        <a
-          href="Todo.html"
-          class="mt-8 inline-block bg-white text-indigo-600 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-200"
-        >
-          Start
-        </a>
-      </div>
+    <section class="flex justify-center items-center h-screen bg-gradient-to-b from-purple-600 via-indigo-600 to-gray-900">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold">Organize Your Life with this easy-to-use app</h1>
+            <p class="mt-4 text-lg md:text-2xl">Manage tasks effortlessly and boost your productivity. Stay on top of everything with our intuitive To-Do List.</p>
+            <a href="Todo.html" class="mt-8 inline-block bg-white text-indigo-600 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-200">Start</a>
+            
+            <!-- Export Buttons -->
+            <div class="container mx-auto px-4 mt-6">
+                <button id="export-pdf" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700">Export to PDF</button>
+                <button id="export-csv" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Export to CSV</button>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto px-4 text-center">
-        <p>
-          &copy; 2024 Made with &#10084; by Ansh Grover. All rights reserved.
-        </p>
-      </div>
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Made with &#10084; by Ansh Grover. All rights reserved.</p>
+        </div>
     </footer>
-  </body>
+
+    <script>
+        // Export to PDF
+        document.getElementById('export-pdf').addEventListener('click', function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.text("Your To-Do Tasks", 10, 10);
+            
+            // Sample task data (replace with actual task data)
+            const tasks = [
+                { title: "Task 1", description: "Description 1", dueDate: "2024-01-01", status: "Pending" },
+                { title: "Task 2", description: "Description 2", dueDate: "2024-01-02", status: "Completed" }
+            ];
+
+            let y = 20;
+            tasks.forEach(task => {
+                // Corrected string concatenation for PDF text output
+                doc.text(task.title + " - " + task.description + " - Due: " + task.dueDate + " - Status: " + task.status, 10, y);
+                y += 10;
+            });
+            doc.save('todo-tasks.pdf');
+        });
+
+        // Export to CSV
+        document.getElementById('export-csv').addEventListener('click', function () {
+            const tasks = [
+                { title: "Task 1", description: "Description 1", dueDate: "2024-01-01", status: "Pending" },
+                { title: "Task 2", description: "Description 2", dueDate: "2024-01-02", status: "Completed" }
+            ];
+
+            const csvContent = "data:text/csv;charset=utf-8,"
+                + "Title,Description,Due Date,Status\n"
+                + tasks.map(e => e.title + "," + e.description + "," + e.dueDate + "," + e.status).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "todo-tasks.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link); // Clean up by removing the link after use
+        });
+    </script>
+</body>
 </html>
