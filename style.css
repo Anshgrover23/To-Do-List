@@ -33,7 +33,6 @@ body {
   font-size: 5rem;
   padding: 8px 16px;
   text-shadow: 0 3px 10px rgba(10, 10, 10, 40);
-  animation: bounce 1s infinite;
 }
 
 h1 {
