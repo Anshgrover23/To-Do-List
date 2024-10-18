@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <!-- Add this new div for sorting buttons -->
+      <!-- New div for sorting and filtering buttons -->
       <div class="sort-buttons">
         <div class="sort-filter-container">
           <button class="sort-button" onclick="sortTodos('category')">
@@ -68,6 +68,9 @@
           <button class="sort-button" onclick="sortTodos('priority')">
             Sort by Priority
           </button>
+          <button class="sort-button" onclick="sortTodos('date')">
+            Sort by Date
+          </button>
           <select class="js-filter-input" onchange="filterTodos()">
             <option value="all">All</option>
             <option value="pending">Pending</option>
@@ -75,6 +78,7 @@
           </select>
         </div>
       </div>
+
       <div class="test">
         <div class="js-add-html js-add-grid js-add-html-tasks"></div>
       </div>
