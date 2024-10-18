@@ -1,58 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>To-Do List App</title>
+    <title>Task Progress Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-lg">
-      <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-2xl font-bold text-purple-600">To-Do List</a>
-        <ul class="flex space-x-4">
-          <!-- All of these buttons currently lead to error pages as their functionality will be added in the future
-         after login and authentication has been implemented.-->
-          <li>
-            <a href="error.html" class="hover:text-blue-600">Upcoming Tasks</a>
-          </li>
-          <li><a href="error.html" class="hover:text-blue-600">Friends</a></li>
-        </ul>
-      </div>
-    </nav>
+</head>
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Main Block -->
-    <section
-      class="flex justify-center items-center h-screen bg-gradient-to-b from-purple-600 via-indigo-600 to-gray-900"
-    >
-      <div class="container mx-auto px-4 text-center text-white">
-        <h1 class="text-4xl md:text-6xl font-bold">
-          Organize Your Life with this easy-to-use app
-        </h1>
-        <p class="mt-4 text-lg md:text-2xl">
-          Manage tasks effortlessly and boost your productivity. Stay on top of
-          everything with our intuitive To-Do List.
-        </p>
-        <a
-          href="Todo.html"
-          class="mt-8 inline-block bg-white text-indigo-600 font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-200"
-        >
-          Start
-        </a>
-      </div>
-    </section>
+    <!-- Main Task Block -->
+    <div class="container mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-4">Main Task: Build a Website</h2>
+        
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full">
+            <div id="progress-bar" class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-full" style="width: 0%;">0%</div>
+        </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto px-4 text-center">
-        <p>
-          &copy; 2024 Made with &#10084; by Ansh Grover. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  </body>
+        <!-- Subtasks -->
+        <div class="mt-4">
+            <h3 class="text-xl font-semibold mb-2">Subtasks:</h3>
+            <ul id="subtask-list" class="list-disc pl-5 space-y-2">
+                <li>
+                    <input type="checkbox" class="subtask-checkbox" /> Design homepage
+                </li>
+                <li>
+                    <input type="checkbox" class="subtask-checkbox" /> Set up backend server
+                </li>
+                <li>
+                    <input type="checkbox" class="subtask-checkbox" /> Implement authentication
+                </li>
+                <li>
+                    <input type="checkbox" class="subtask-checkbox" /> Deploy website
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- JavaScript for Progress Tracking -->
+    <script>
+        const subtaskCheckboxes = document.querySelectorAll('.subtask-checkbox');
+        const progressBar = document.getElementById('progress-bar');
+        
+        // Function to update progress
+        function updateProgress() {
+            const totalSubtasks = subtaskCheckboxes.length;
+            const completedSubtasks = document.querySelectorAll('.subtask-checkbox:checked').length;
+            
+            // Calculate progress percentage
+            const progressPercentage = (completedSubtasks / totalSubtasks) * 100;
+
+            // Update the progress bar and percentage text
+            progressBar.style.width = `${progressPercentage}%`;
+            progressBar.textContent = `${Math.round(progressPercentage)}%`;
+        }
+
+        // Add event listeners to each subtask checkbox
+        subtaskCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+        });
+    </script>
+
+</body>
 </html>
